@@ -31,7 +31,7 @@
 @synthesize timeout;
 @synthesize statusCode;
 
-- (id)initWithURL:(NSString *)_url data:(NSDictionary *)_parameters delegate:(id)_delegate
+- (id)initWithURL:(NSString *)_url formData:(NSDictionary *)_parameters delegate:(id)_delegate
 {
     if (self = [super init])
     {
@@ -78,7 +78,7 @@
         
         for(NSString *key in [parameters allKeys])
         {
-            if(![key isEqualToString:firstkey])
+            if(![key isEqualToString:firstkey] && ![key isEqualToString:kImageParameterKey])
             {
                 [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
             }
@@ -191,7 +191,7 @@
         
         for(NSString *key in [parameters allKeys])
         {
-            if(![key isEqualToString:firstkey])
+            if(![key isEqualToString:firstkey] && ![key isEqualToString:kImageParameterKey])
             {
                 [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
             }
@@ -253,7 +253,7 @@
                 
                 [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
                 
-                [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\"; filename=\"image.jpeg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpeg\"\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
                 
                 [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
                 

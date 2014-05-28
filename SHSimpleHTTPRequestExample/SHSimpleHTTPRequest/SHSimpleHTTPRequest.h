@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#define kImageParameterKey @"image"
+
 @class SHSimpleHTTPRequest;
 
 @protocol SHSimpleHTTPRequestDelegate <NSObject>
@@ -37,7 +39,7 @@
 @property (nonatomic, readwrite) NSInteger tag;
 @property (nonatomic, readonly) NSInteger statusCode;
 
-- (id)initWithURL:(NSString *)url data:(NSDictionary *)parameters delegate:(id)delegate;
+- (id)initWithURL:(NSString *)url formData:(NSDictionary *)parameters delegate:(id)delegate;
 
 - (void)startGetRequestCall;
 - (void)startPostRequestCall;
