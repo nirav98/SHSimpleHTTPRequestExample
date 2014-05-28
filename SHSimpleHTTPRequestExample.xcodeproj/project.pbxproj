@@ -1,0 +1,459 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F05F9AC21934967E00BBADCE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05F9AC11934967E00BBADCE /* Foundation.framework */; };
+		F05F9AC41934967E00BBADCE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05F9AC31934967E00BBADCE /* CoreGraphics.framework */; };
+		F05F9AC61934967E00BBADCE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05F9AC51934967E00BBADCE /* UIKit.framework */; };
+		F05F9ACC1934967E00BBADCE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F05F9ACA1934967E00BBADCE /* InfoPlist.strings */; };
+		F05F9ACE1934967E00BBADCE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F05F9ACD1934967E00BBADCE /* main.m */; };
+		F05F9AD21934967E00BBADCE /* SHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F05F9AD11934967E00BBADCE /* SHAppDelegate.m */; };
+		F05F9AD41934967E00BBADCE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F05F9AD31934967E00BBADCE /* Images.xcassets */; };
+		F05F9ADB1934967E00BBADCE /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05F9ADA1934967E00BBADCE /* XCTest.framework */; };
+		F05F9ADC1934967E00BBADCE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05F9AC11934967E00BBADCE /* Foundation.framework */; };
+		F05F9ADD1934967E00BBADCE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F05F9AC51934967E00BBADCE /* UIKit.framework */; };
+		F05F9AE51934967E00BBADCE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F05F9AE31934967E00BBADCE /* InfoPlist.strings */; };
+		F05F9AE71934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F05F9AE61934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m */; };
+		F05F9AF2193496CD00BBADCE /* SHSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F05F9ADE1934967E00BBADCE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F05F9AB61934967E00BBADCE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F05F9ABD1934967E00BBADCE;
+			remoteInfo = SHSimpleHTTPRequestExample;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F05F9ABE1934967E00BBADCE /* SHSimpleHTTPRequestExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SHSimpleHTTPRequestExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F05F9AC11934967E00BBADCE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		F05F9AC31934967E00BBADCE /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		F05F9AC51934967E00BBADCE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		F05F9AC91934967E00BBADCE /* SHSimpleHTTPRequestExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SHSimpleHTTPRequestExample-Info.plist"; sourceTree = "<group>"; };
+		F05F9ACB1934967E00BBADCE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F05F9ACD1934967E00BBADCE /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F05F9ACF1934967E00BBADCE /* SHSimpleHTTPRequestExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SHSimpleHTTPRequestExample-Prefix.pch"; sourceTree = "<group>"; };
+		F05F9AD01934967E00BBADCE /* SHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SHAppDelegate.h; sourceTree = "<group>"; };
+		F05F9AD11934967E00BBADCE /* SHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHAppDelegate.m; sourceTree = "<group>"; };
+		F05F9AD31934967E00BBADCE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F05F9AD91934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SHSimpleHTTPRequestExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F05F9ADA1934967E00BBADCE /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F05F9AE21934967E00BBADCE /* SHSimpleHTTPRequestExampleTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SHSimpleHTTPRequestExampleTests-Info.plist"; sourceTree = "<group>"; };
+		F05F9AE41934967E00BBADCE /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F05F9AE61934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHSimpleHTTPRequestExampleTests.m; sourceTree = "<group>"; };
+		F05F9AF0193496CD00BBADCE /* SHSimpleHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHSimpleHTTPRequest.h; path = SHSimpleHTTPRequest/SHSimpleHTTPRequest.h; sourceTree = "<group>"; };
+		F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHSimpleHTTPRequest.m; path = SHSimpleHTTPRequest/SHSimpleHTTPRequest.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F05F9ABB1934967E00BBADCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F05F9AC41934967E00BBADCE /* CoreGraphics.framework in Frameworks */,
+				F05F9AC61934967E00BBADCE /* UIKit.framework in Frameworks */,
+				F05F9AC21934967E00BBADCE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F05F9AD61934967E00BBADCE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F05F9ADB1934967E00BBADCE /* XCTest.framework in Frameworks */,
+				F05F9ADD1934967E00BBADCE /* UIKit.framework in Frameworks */,
+				F05F9ADC1934967E00BBADCE /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F05F9AB51934967E00BBADCE = {
+			isa = PBXGroup;
+			children = (
+				F05F9AC71934967E00BBADCE /* SHSimpleHTTPRequestExample */,
+				F05F9AE01934967E00BBADCE /* SHSimpleHTTPRequestExampleTests */,
+				F05F9AC01934967E00BBADCE /* Frameworks */,
+				F05F9ABF1934967E00BBADCE /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F05F9ABF1934967E00BBADCE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9ABE1934967E00BBADCE /* SHSimpleHTTPRequestExample.app */,
+				F05F9AD91934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F05F9AC01934967E00BBADCE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9AC11934967E00BBADCE /* Foundation.framework */,
+				F05F9AC31934967E00BBADCE /* CoreGraphics.framework */,
+				F05F9AC51934967E00BBADCE /* UIKit.framework */,
+				F05F9ADA1934967E00BBADCE /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F05F9AC71934967E00BBADCE /* SHSimpleHTTPRequestExample */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9AD01934967E00BBADCE /* SHAppDelegate.h */,
+				F05F9AD11934967E00BBADCE /* SHAppDelegate.m */,
+				F05F9AD31934967E00BBADCE /* Images.xcassets */,
+				F05F9AC81934967E00BBADCE /* Supporting Files */,
+				F05F9AF0193496CD00BBADCE /* SHSimpleHTTPRequest.h */,
+				F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */,
+			);
+			path = SHSimpleHTTPRequestExample;
+			sourceTree = "<group>";
+		};
+		F05F9AC81934967E00BBADCE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9AC91934967E00BBADCE /* SHSimpleHTTPRequestExample-Info.plist */,
+				F05F9ACA1934967E00BBADCE /* InfoPlist.strings */,
+				F05F9ACD1934967E00BBADCE /* main.m */,
+				F05F9ACF1934967E00BBADCE /* SHSimpleHTTPRequestExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F05F9AE01934967E00BBADCE /* SHSimpleHTTPRequestExampleTests */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9AE61934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m */,
+				F05F9AE11934967E00BBADCE /* Supporting Files */,
+			);
+			path = SHSimpleHTTPRequestExampleTests;
+			sourceTree = "<group>";
+		};
+		F05F9AE11934967E00BBADCE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9AE21934967E00BBADCE /* SHSimpleHTTPRequestExampleTests-Info.plist */,
+				F05F9AE31934967E00BBADCE /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F05F9ABD1934967E00BBADCE /* SHSimpleHTTPRequestExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F05F9AEA1934967E00BBADCE /* Build configuration list for PBXNativeTarget "SHSimpleHTTPRequestExample" */;
+			buildPhases = (
+				F05F9ABA1934967E00BBADCE /* Sources */,
+				F05F9ABB1934967E00BBADCE /* Frameworks */,
+				F05F9ABC1934967E00BBADCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SHSimpleHTTPRequestExample;
+			productName = SHSimpleHTTPRequestExample;
+			productReference = F05F9ABE1934967E00BBADCE /* SHSimpleHTTPRequestExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F05F9AD81934967E00BBADCE /* SHSimpleHTTPRequestExampleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F05F9AED1934967E00BBADCE /* Build configuration list for PBXNativeTarget "SHSimpleHTTPRequestExampleTests" */;
+			buildPhases = (
+				F05F9AD51934967E00BBADCE /* Sources */,
+				F05F9AD61934967E00BBADCE /* Frameworks */,
+				F05F9AD71934967E00BBADCE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F05F9ADF1934967E00BBADCE /* PBXTargetDependency */,
+			);
+			name = SHSimpleHTTPRequestExampleTests;
+			productName = SHSimpleHTTPRequestExampleTests;
+			productReference = F05F9AD91934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F05F9AB61934967E00BBADCE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = SH;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "shabib hossain";
+				TargetAttributes = {
+					F05F9AD81934967E00BBADCE = {
+						TestTargetID = F05F9ABD1934967E00BBADCE;
+					};
+				};
+			};
+			buildConfigurationList = F05F9AB91934967E00BBADCE /* Build configuration list for PBXProject "SHSimpleHTTPRequestExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = F05F9AB51934967E00BBADCE;
+			productRefGroup = F05F9ABF1934967E00BBADCE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F05F9ABD1934967E00BBADCE /* SHSimpleHTTPRequestExample */,
+				F05F9AD81934967E00BBADCE /* SHSimpleHTTPRequestExampleTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F05F9ABC1934967E00BBADCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F05F9ACC1934967E00BBADCE /* InfoPlist.strings in Resources */,
+				F05F9AD41934967E00BBADCE /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F05F9AD71934967E00BBADCE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F05F9AE51934967E00BBADCE /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F05F9ABA1934967E00BBADCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F05F9AF2193496CD00BBADCE /* SHSimpleHTTPRequest.m in Sources */,
+				F05F9ACE1934967E00BBADCE /* main.m in Sources */,
+				F05F9AD21934967E00BBADCE /* SHAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F05F9AD51934967E00BBADCE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F05F9AE71934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F05F9ADF1934967E00BBADCE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F05F9ABD1934967E00BBADCE /* SHSimpleHTTPRequestExample */;
+			targetProxy = F05F9ADE1934967E00BBADCE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F05F9ACA1934967E00BBADCE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F05F9ACB1934967E00BBADCE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F05F9AE31934967E00BBADCE /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F05F9AE41934967E00BBADCE /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F05F9AE81934967E00BBADCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		F05F9AE91934967E00BBADCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F05F9AEB1934967E00BBADCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SHSimpleHTTPRequestExample/SHSimpleHTTPRequestExample-Prefix.pch";
+				INFOPLIST_FILE = "SHSimpleHTTPRequestExample/SHSimpleHTTPRequestExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		F05F9AEC1934967E00BBADCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SHSimpleHTTPRequestExample/SHSimpleHTTPRequestExample-Prefix.pch";
+				INFOPLIST_FILE = "SHSimpleHTTPRequestExample/SHSimpleHTTPRequestExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		F05F9AEE1934967E00BBADCE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SHSimpleHTTPRequestExample.app/SHSimpleHTTPRequestExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SHSimpleHTTPRequestExample/SHSimpleHTTPRequestExample-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "SHSimpleHTTPRequestExampleTests/SHSimpleHTTPRequestExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		F05F9AEF1934967E00BBADCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/SHSimpleHTTPRequestExample.app/SHSimpleHTTPRequestExample";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SHSimpleHTTPRequestExample/SHSimpleHTTPRequestExample-Prefix.pch";
+				INFOPLIST_FILE = "SHSimpleHTTPRequestExampleTests/SHSimpleHTTPRequestExampleTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F05F9AB91934967E00BBADCE /* Build configuration list for PBXProject "SHSimpleHTTPRequestExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F05F9AE81934967E00BBADCE /* Debug */,
+				F05F9AE91934967E00BBADCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F05F9AEA1934967E00BBADCE /* Build configuration list for PBXNativeTarget "SHSimpleHTTPRequestExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F05F9AEB1934967E00BBADCE /* Debug */,
+				F05F9AEC1934967E00BBADCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		F05F9AED1934967E00BBADCE /* Build configuration list for PBXNativeTarget "SHSimpleHTTPRequestExampleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F05F9AEE1934967E00BBADCE /* Debug */,
+				F05F9AEF1934967E00BBADCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F05F9AB61934967E00BBADCE /* Project object */;
+}
