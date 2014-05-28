@@ -13,6 +13,8 @@
 
 @interface SHSimpleHTTPRequest ()
 
+- (BOOL)delegateIsConsistant;
+
 - (void)initConnection;
 - (void)startRequest;
 
@@ -34,7 +36,6 @@
     if (self = [super init])
     {
         // assigning parameters
-        
         url = [_url getURLEncodedStringWithCharacters:urlCharactersToBeEncoded];
         if(_parameters != nil)
         {
@@ -51,268 +52,283 @@
     return self;
 }
 
-- (void)initGetRequest
+- (void)startGetRequestCall
 {
-    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    request.cachePolicy = cachePolicy;
-    request.HTTPMethod = @"GET";
-    request.timeoutInterval = timeout;
-    
-    [self initConnection];
-    [self startRequest];
+    if ([self delegateIsConsistant])
+    {
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        request.cachePolicy = cachePolicy;
+        request.HTTPMethod = @"GET";
+        request.timeoutInterval = timeout;
+        
+        [self initConnection];
+        [self startRequest];
+    }
 }
 
-- (void)initPostRequest
+- (void)startPostRequestCall
 {
-    BOOL shouldAddHeaderForImage = NO;
-    NSString *contentType;
-    
-    NSMutableData *postData = [[NSMutableData alloc] init];
-    NSString *firstkey  = [[parameters allKeys] objectAtIndex:0];
-    
-    for(NSString *key in [parameters allKeys])
+    if ([self delegateIsConsistant])
     {
-        if(![key isEqualToString:firstkey] && ![key isEqualToString:@"profilepic"])
-        {
-            [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
-        }
+        BOOL shouldAddHeaderForImage = NO;
+        NSString *contentType;
         
-        id object = [parameters objectForKey:key];
+        NSMutableData *postData = [[NSMutableData alloc] init];
+        NSString *firstkey  = [[parameters allKeys] objectAtIndex:0];
         
-        if([object isKindOfClass:[NSString class]])
+        for(NSString *key in [parameters allKeys])
         {
-            NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, (NSString *)object];
-            
-            [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else if([object isKindOfClass:[NSArray class]])
-        {
-            for(int i = 0; i < [(NSArray *)object count]; i++)
+            if(![key isEqualToString:firstkey])
             {
-                if(i)
-                {
-                    [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
-                }
-                
-                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSArray *)object objectAtIndex:i]];
+                [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            
+            id object = [parameters objectForKey:key];
+            
+            if([object isKindOfClass:[NSString class]])
+            {
+                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, (NSString *)object];
                 
                 [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
             }
-        }
-        else if([object isKindOfClass:[NSDictionary class]])
-        {
-            NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSDictionary *)object returnJSONDictionary]];
-            
-            [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else if([object isKindOfClass:[NSNumber class]])
-        {
-            NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSNumber *)object stringValue]];
-            
-            [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else if([object isKindOfClass:[UIImage class]])
-        {
-            shouldAddHeaderForImage = YES;
-            
-            // define boundary
-            NSString *boundary = @"14737809831466499882746641449";
-            
-            contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-            
-            // convert image to jpeg data
-            // we are reducing the quality until its less than 600 kB
-            
-            NSData *imageData = UIImageJPEGRepresentation((UIImage *)object, 0.067);
-            NSLog(@"%lu", (unsigned long)imageData.length);
-            
-            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpeg\"\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            [postData appendData:imageData];
-            
-            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else
-        {
-            NSLog(@"%@", key);
-        }
-    }
-    
-    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    request.cachePolicy = cachePolicy;
-    request.HTTPMethod = @"POST";
-    request.timeoutInterval = timeout;
-    request.HTTPBody = postData;
-    
-    if(shouldAddHeaderForImage)
-    {
-        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-    }
-    
-    [self initConnection];
-    [self startRequest];
-}
-
-- (void)initDeleteRequest
-{
-    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
-    request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
-    request.HTTPMethod = @"DELETE";
-    request.timeoutInterval = timeout;
-    
-    [self initConnection];
-    [self startRequest];
-}
-
-- (void)initPutRequest
-{
-    BOOL shouldAddHeaderForImage = NO;
-    NSString *contentType;
-    
-    NSMutableData *postData = [[NSMutableData alloc] init];
-    
-    NSString *firstkey  = [[parameters allKeys] objectAtIndex:0];
-    
-    for(NSString *key in [parameters allKeys])
-    {
-        if(![key isEqualToString:firstkey] && ![key isEqualToString:@"photo"])
-        {
-            [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        
-        id object = [parameters objectForKey:key];
-        
-        if([object isKindOfClass:[NSString class]])
-        {
-            NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, (NSString *)object];
-            
-            [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else if([object isKindOfClass:[NSArray class]])
-        {
-            for(int i = 0; i < [(NSArray *)object count]; i++)
+            else if([object isKindOfClass:[NSArray class]])
             {
-                if(i)
+                for(int i = 0; i < [(NSArray *)object count]; i++)
                 {
-                    [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
+                    if(i)
+                    {
+                        [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
+                    }
+                    
+                    NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSArray *)object objectAtIndex:i]];
+                    
+                    [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
                 }
-                
-                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSArray *)object objectAtIndex:i]];
+            }
+            else if([object isKindOfClass:[NSDictionary class]])
+            {
+                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSDictionary *)object returnJSONDictionary]];
                 
                 [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
             }
-        }
-        else if([object isKindOfClass:[NSDictionary class]])
-        {
-            NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSDictionary *)object returnJSONDictionary]];
-            
-            [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else if([object isKindOfClass:[NSNumber class]])
-        {
-            NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSNumber *)object stringValue]];
-            [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
-        }
-        else if([object isKindOfClass:[UIImage class]])
-        {
-            shouldAddHeaderForImage = YES;
-            // define boundary
-            NSString *boundary = @"14737809831466499882746641449";
-            
-            contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
-            
-            // convert image to jpeg data
-            // we are reducing the quality until its less than 600 kB
-            
-            NSData *imageData;
-            double quality = 1.0;
-            
-            imageData = UIImageJPEGRepresentation((UIImage *)object, quality);
-            
-            while (imageData.length >= 614400)
+            else if([object isKindOfClass:[NSNumber class]])
             {
-                quality -= 0.1;
+                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSNumber *)object stringValue]];
+                
+                [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            else if([object isKindOfClass:[UIImage class]])
+            {
+                shouldAddHeaderForImage = YES;
+                
+                // define boundary
+                NSString *boundary = @"14737809831466499882746641449";
+                
+                contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+                
+                // convert image to jpeg data
+                // we are reducing the quality until its less than 600 kB
+                
+                NSData *imageData = UIImageJPEGRepresentation((UIImage *)object, 0.067);
+                NSLog(@"%lu", (unsigned long)imageData.length);
+                
+                [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"%@\"; filename=\"image.jpeg\"\r\n", key] dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [postData appendData:imageData];
+                
+                [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            else
+            {
+                NSLog(@"%@", key);
+            }
+        }
+        
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        request.cachePolicy = cachePolicy;
+        request.HTTPMethod = @"POST";
+        request.timeoutInterval = timeout;
+        request.HTTPBody = postData;
+        
+        if(shouldAddHeaderForImage)
+        {
+            [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
+        }
+        
+        [self initConnection];
+        [self startRequest];
+    }
+}
+
+- (void)startDeleteRequestCall
+{
+    if ([self delegateIsConsistant])
+    {
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:url]];
+        request.cachePolicy = NSURLRequestReloadIgnoringCacheData;
+        request.HTTPMethod = @"DELETE";
+        request.timeoutInterval = timeout;
+        
+        [self initConnection];
+        [self startRequest];
+    }
+}
+
+- (void)startPutRequestCall
+{
+    if ([self delegateIsConsistant])
+    {
+        BOOL shouldAddHeaderForImage = NO;
+        NSString *contentType;
+        
+        NSMutableData *postData = [[NSMutableData alloc] init];
+        
+        NSString *firstkey  = [[parameters allKeys] objectAtIndex:0];
+        
+        for(NSString *key in [parameters allKeys])
+        {
+            if(![key isEqualToString:firstkey])
+            {
+                [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            
+            id object = [parameters objectForKey:key];
+            
+            if([object isKindOfClass:[NSString class]])
+            {
+                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, (NSString *)object];
+                
+                [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            else if([object isKindOfClass:[NSArray class]])
+            {
+                for(int i = 0; i < [(NSArray *)object count]; i++)
+                {
+                    if(i)
+                    {
+                        [postData appendData:[@"&" dataUsingEncoding:NSUTF8StringEncoding]];
+                    }
+                    
+                    NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSArray *)object objectAtIndex:i]];
+                    
+                    [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
+                }
+            }
+            else if([object isKindOfClass:[NSDictionary class]])
+            {
+                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSDictionary *)object returnJSONDictionary]];
+                
+                [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            else if([object isKindOfClass:[NSNumber class]])
+            {
+                NSString *postPart = [NSString stringWithFormat:@"%@=%@", key, [(NSNumber *)object stringValue]];
+                [postData appendData:[[postPart getURLEncodedStringWithCharacters:urlDataCharactersToBeEncoded] dataUsingEncoding:NSUTF8StringEncoding]];
+            }
+            else if([object isKindOfClass:[UIImage class]])
+            {
+                shouldAddHeaderForImage = YES;
+                // define boundary
+                NSString *boundary = @"14737809831466499882746641449";
+                
+                contentType = [NSString stringWithFormat:@"multipart/form-data; boundary=%@", boundary];
+                
+                // convert image to jpeg data
+                // we are reducing the quality until its less than 600 kB
+                
+                NSData *imageData;
+                double quality = 1.0;
+                
                 imageData = UIImageJPEGRepresentation((UIImage *)object, quality);
+                
+                while (imageData.length >= 614400)
+                {
+                    quality -= 0.1;
+                    imageData = UIImageJPEGRepresentation((UIImage *)object, quality);
+                }
+                
+                [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\"; filename=\"image.jpeg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+                
+                [postData appendData:imageData];
+                
+                [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
             }
-            
-            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            [postData appendData:[[NSString stringWithFormat:@"Content-Disposition: form-data; name=\"photo\"; filename=\"image.jpeg\"\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            [postData appendData:[@"Content-Type: application/octet-stream\r\n\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
-            
-            [postData appendData:imageData];
-            
-            [postData appendData:[[NSString stringWithFormat:@"\r\n--%@--\r\n", boundary] dataUsingEncoding:NSUTF8StringEncoding]];
+            else
+            {
+                NSLog(@"%@", key);
+            }
         }
-        else
+        
+        NSString *postString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
+        
+        request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", url, postString]]];
+        request.cachePolicy = cachePolicy;
+        request.HTTPMethod = @"PUT";
+        request.timeoutInterval = timeout;
+        
+        if(shouldAddHeaderForImage)
         {
-            NSLog(@"%@", key);
+            [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
         }
+        
+        [self initConnection];
+        [self startRequest];
     }
-    
-    NSString *postString = [[NSString alloc] initWithData:postData encoding:NSUTF8StringEncoding];
-    
-    request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@?%@", url, postString]]];
-    request.cachePolicy = cachePolicy;
-    request.HTTPMethod = @"PUT";
-    request.timeoutInterval = timeout;
-    
-    if(shouldAddHeaderForImage)
-    {
-        [request addValue:contentType forHTTPHeaderField:@"Content-Type"];
-    }
-    
-    [self initConnection];
-    [self startRequest];
 }
 
-- (void)initAsyncGetRequest
+- (void)startAsynchronousRequestCall
 {
-    NSURLRequest *_request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
-    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
-    
-    [NSURLConnection sendAsynchronousRequest:_request queue:queue completionHandler:^(NSURLResponse *_response, NSData *_data_, NSError *error) {
+    if ([self delegateIsConsistant])
+    {
+        NSURLRequest *_request = [NSURLRequest requestWithURL:[NSURL URLWithString:url]];
+        NSOperationQueue *queue = [[NSOperationQueue alloc] init];
         
-        dispatch_async(dispatch_get_main_queue(), ^{
-            statusCode = [(NSHTTPURLResponse *)_response statusCode];
-        });
-        
-        if (_data_.length > 0 && error == nil)
-        {
+        [NSURLConnection sendAsynchronousRequest:_request queue:queue completionHandler:^(NSURLResponse *_response, NSData *_data_, NSError *error) {
+            
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate simpleHTTPRequest:self didFinishLoadingData:_data_];
+                statusCode = [(NSHTTPURLResponse *)_response statusCode];
             });
-        }
-        else if (_data_.length == 0 && error == nil)
-        {
-            //Data is empty
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate simpleHTTPRequest:self didFinishLoadingData:_data_];
-            });
-            NSLog(@"Response is empty");
-        }
-        else if (error != nil && error.code == NSURLErrorTimedOut)
-        {
-            //Request timed out
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate simpleHTTPRequest:self didFailedWithError:error];
-            });
-            NSLog(@"%@", error.description);
-        }
-        else // if (error != nil)
-        {
-            //Failed to load data
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.delegate simpleHTTPRequest:self didFailedWithError:error];
-            });
-            NSLog(@"%@", error.description);
-        }
-    }];
+            
+            if (_data_.length > 0 && error == nil)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate simpleHTTPRequest:self didFinishLoadingData:_data_];
+                });
+            }
+            else if (_data_.length == 0 && error == nil)
+            {
+                //Data is empty
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate simpleHTTPRequest:self didFinishLoadingData:_data_];
+                });
+                NSLog(@"Response is empty");
+            }
+            else if (error != nil && error.code == NSURLErrorTimedOut)
+            {
+                //Request timed out
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate simpleHTTPRequest:self didFailedWithError:error];
+                });
+                NSLog(@"%@", error.description);
+            }
+            else // if (error != nil)
+            {
+                //Failed to load data
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [self.delegate simpleHTTPRequest:self didFailedWithError:error];
+                });
+                NSLog(@"%@", error.description);
+            }
+        }];
+    }
 }
 
 - (void)stopRequest
@@ -348,6 +364,16 @@
 - (NSString *)getURLEncodedStringForString:(NSString *)string WithCharacters:(NSString *)characters
 {
     return (__bridge NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault, (CFStringRef)self, NULL, (CFStringRef)characters, kCFStringEncodingUTF8);
+}
+
+- (BOOL)delegateIsConsistant
+{
+    if ([delegate respondsToSelector:@selector(simpleHTTPRequest:didFinishLoadingData:)] && [delegate respondsToSelector:@selector(simpleHTTPRequest:didFailedWithError:)])
+    {
+        return YES;
+    }
+    
+    @throw ([NSException exceptionWithName:@"DelegateIncompleteImplementationException" reason:@"You should implement #simpleHTTPRequest:didFinishLoadingData: and #simpleHTTPRequest:didFailedWithError:" userInfo:nil]);
 }
 
 #pragma mark - NSURLConnection Delegates

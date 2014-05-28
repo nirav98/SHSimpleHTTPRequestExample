@@ -12,6 +12,7 @@
 
 @protocol SHSimpleHTTPRequestDelegate <NSObject>
 
+@required
 - (void)simpleHTTPRequest:(SHSimpleHTTPRequest *)request didFinishLoadingData:(NSData *)data;
 - (void)simpleHTTPRequest:(SHSimpleHTTPRequest *)request didFailedWithError:(NSError *)error;
 
@@ -25,21 +26,29 @@
     NSURLRequestCachePolicy cachePolicy;
 }
 
-@property (nonatomic, strong, readonly) NSString *url;
-@property (nonatomic, strong, readonly) NSDictionary *parameters;
-@property (nonatomic, readwrite) NSInteger tag;
-@property (nonatomic, readwrite) NSTimeInterval timeout;
-@property (nonatomic, readonly) NSInteger statusCode;
 @property (nonatomic, weak) id <SHSimpleHTTPRequestDelegate> delegate;
 
+@property (nonatomic, strong, readonly) NSString *url;
+
+@property (nonatomic, strong, readonly) NSDictionary *parameters;
+
+@property (nonatomic, readwrite) NSTimeInterval timeout;
+
+@property (nonatomic, readwrite) NSInteger tag;
+@property (nonatomic, readonly) NSInteger statusCode;
+
 - (id)initWithURL:(NSString *)url data:(NSDictionary *)parameters delegate:(id)delegate;
-- (void)initGetRequest;
-- (void)initPostRequest;
-- (void)initDeleteRequest;
-- (void)initPutRequest;
-- (void)initAsyncGetRequest;
+
+- (void)startGetRequestCall;
+- (void)startPostRequestCall;
+- (void)startDeleteRequestCall;
+- (void)startPutRequestCall;
+- (void)startAsynchronousRequestCall;
+
 - (void)stopRequest;
+
 - (void)disableCaching:(BOOL)yes;
+
 - (NSString *)getURL;
 
 @end
