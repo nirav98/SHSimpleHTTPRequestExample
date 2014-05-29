@@ -20,6 +20,8 @@
 		F05F9AE51934967E00BBADCE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F05F9AE31934967E00BBADCE /* InfoPlist.strings */; };
 		F05F9AE71934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F05F9AE61934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m */; };
 		F05F9AF2193496CD00BBADCE /* SHSimpleHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */; };
+		F0A60C321937171900AD3D1C /* SHViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F0A60C301937171900AD3D1C /* SHViewController.m */; };
+		F0A60C331937171900AD3D1C /* SHViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F0A60C311937171900AD3D1C /* SHViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		F05F9AE61934967E00BBADCE /* SHSimpleHTTPRequestExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SHSimpleHTTPRequestExampleTests.m; sourceTree = "<group>"; };
 		F05F9AF0193496CD00BBADCE /* SHSimpleHTTPRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SHSimpleHTTPRequest.h; path = SHSimpleHTTPRequest/SHSimpleHTTPRequest.h; sourceTree = "<group>"; };
 		F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SHSimpleHTTPRequest.m; path = SHSimpleHTTPRequest/SHSimpleHTTPRequest.m; sourceTree = "<group>"; };
+		F0A60C2F1937171900AD3D1C /* SHViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SHViewController.h; sourceTree = "<group>"; };
+		F0A60C301937171900AD3D1C /* SHViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SHViewController.m; sourceTree = "<group>"; };
+		F0A60C311937171900AD3D1C /* SHViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,10 +117,12 @@
 			children = (
 				F05F9AD01934967E00BBADCE /* SHAppDelegate.h */,
 				F05F9AD11934967E00BBADCE /* SHAppDelegate.m */,
+				F0A60C2E193716E600AD3D1C /* SHSimpleHTTPRequest */,
+				F0A60C2F1937171900AD3D1C /* SHViewController.h */,
+				F0A60C301937171900AD3D1C /* SHViewController.m */,
+				F0A60C311937171900AD3D1C /* SHViewController.xib */,
 				F05F9AD31934967E00BBADCE /* Images.xcassets */,
 				F05F9AC81934967E00BBADCE /* Supporting Files */,
-				F05F9AF0193496CD00BBADCE /* SHSimpleHTTPRequest.h */,
-				F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */,
 			);
 			path = SHSimpleHTTPRequestExample;
 			sourceTree = "<group>";
@@ -147,6 +154,15 @@
 				F05F9AE31934967E00BBADCE /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F0A60C2E193716E600AD3D1C /* SHSimpleHTTPRequest */ = {
+			isa = PBXGroup;
+			children = (
+				F05F9AF0193496CD00BBADCE /* SHSimpleHTTPRequest.h */,
+				F05F9AF1193496CD00BBADCE /* SHSimpleHTTPRequest.m */,
+			);
+			name = SHSimpleHTTPRequest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +241,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0A60C331937171900AD3D1C /* SHViewController.xib in Resources */,
 				F05F9ACC1934967E00BBADCE /* InfoPlist.strings in Resources */,
 				F05F9AD41934967E00BBADCE /* Images.xcassets in Resources */,
 			);
@@ -248,6 +265,7 @@
 				F05F9AF2193496CD00BBADCE /* SHSimpleHTTPRequest.m in Sources */,
 				F05F9ACE1934967E00BBADCE /* main.m in Sources */,
 				F05F9AD21934967E00BBADCE /* SHAppDelegate.m in Sources */,
+				F0A60C321937171900AD3D1C /* SHViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -444,6 +462,7 @@
 				F05F9AEC1934967E00BBADCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F05F9AED1934967E00BBADCE /* Build configuration list for PBXNativeTarget "SHSimpleHTTPRequestExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +471,7 @@
 				F05F9AEF1934967E00BBADCE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
